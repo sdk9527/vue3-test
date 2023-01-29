@@ -1,15 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="欢迎来到VUE3"/>
+  <HelloWorld msg="欢迎来到VUE3" @pplus="plus"/>
+  <h1>父组件：{{ data.count }}</h1>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-
+import { reactive, ref } from 'vue'
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  setup() {
+    const data = ref({count:1})
+    const plus = (count) => {
+      console.log(count)
+      data.value.count = count
+    }
+
+
+    return { data,plus }
   }
 }
 </script>
